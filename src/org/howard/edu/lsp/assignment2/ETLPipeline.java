@@ -71,7 +71,7 @@ public class ETLPipeline {
                                 rowsTransformed++;
                             }
                             catch (NumberFormatException e){
-                                System.out.println("Skipping invalid row (Bad data): " + line);
+                                // System.out.println("Skipping invalid row (Bad data): " + line);
                                 rowsSkipped++;
                             }
                             // System.out.println(values[1]);
@@ -84,7 +84,7 @@ public class ETLPipeline {
                         
                         }
                         else {
-                            System.out.println("Skipping invalid row (Incorrect number of fields): " + line);
+                            // System.out.println("Skipping invalid row (Incorrect number of fields): " + line);
                             rowsSkipped++;
                             rowsRead++;
                         }
