@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class ETLPipeline {
     public static void main(String[] args) {
         String filePath = "data/products.csv";
+        String outputFilePath = "data/transformed_products.csv";
         File file = new File(filePath);
         Integer rowsRead = 0;
         Integer rowsTransformed = 0;
@@ -16,7 +17,7 @@ public class ETLPipeline {
         if (file.exists()) {
             // System.out.println("File found: " + filePath);
             
-            try (Scanner scanner = new Scanner(file); PrintWriter writer = new PrintWriter(new File("data/transformed_products.csv"))) {
+            try (Scanner scanner = new Scanner(file); PrintWriter writer = new PrintWriter(new File(outputFilePath))) {
                 writer.println("ProductID,Name,Price,Category,PriceRange");
                 if (scanner.hasNextLine()){
                     String headerLine = scanner.nextLine();
@@ -66,7 +67,7 @@ public class ETLPipeline {
                                     else if (roundedPrice <= 100.00) range = "Medium";
                                     else if (roundedPrice <= 500.00) range = "High";
                                     else range = "Premium";
-                                writer.println(values[0]+","+values[1]+","+formattedPrice+","+values[3]+","+range);
+                                writer.println(values[0].trim()+","+values[1].trim()+","+formattedPrice.trim()+","+values[3].trim()+","+range.trim());
                                 rowsTransformed++;
                             }
                             catch (NumberFormatException e){
@@ -97,6 +98,7 @@ public class ETLPipeline {
                 System.out.println("Total rows read: " + rowsRead);
                 System.out.println("Total rows transformed: " + rowsTransformed);
                 System.out.println("Total rows skipped: " + rowsSkipped);
+                System.out.println("Output file path: " + outputFilePath);
             }
             catch (Exception e) {
             System.out.println("An error occurred while reading the file: " + e.getMessage());
