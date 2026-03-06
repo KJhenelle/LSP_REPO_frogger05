@@ -1,0 +1,57 @@
+Class: AircraftTransponder
+Responsibilities: 
+- Recieve packet from Aircraft
+Collaborators (if any):
+-
+-
+Assumptions (if any):
+- packet from aircraft cannot be put directly into a normal database
+
+Class: ATCPacketReception
+Responsibilities: 
+- receives and unpacks the data from aircraft
+- sends data to database
+Collaborators (if any):
+- AircraftTransponder
+-
+Assumptions (if any):
+- all data is the same format from the plane
+
+Class: AircraftDatabase
+Responsibilities: 
+- Stores data from packet reception
+Collaborators (if any):
+- ATCPacketReception
+- 
+Assumptions (if any):
+-
+
+Class: ATCGraphicDisplay
+Responsibilities: 
+- displays plane data from database
+- updates with new data every 10 seconds from database
+Collaborators (if any):
+- AircraftDatabase
+- DangerAnalyzer
+Assumptions (if any):
+
+
+
+Class: PlaneDangerAnalyzer
+Responsibilities: 
+- analyzes information from database to detect if the situation is dangerous
+- 
+Collaborators (if any):
+- AircraftDatabase
+- 
+Assumptions (if any):
+
+
+Class: PlaneDatabaseQuery
+Responsibilities: 
+- Retrieves flight data based on screen coordinates.
+- shows pecific aircraft details on query
+Collaborators (if any):
+- AircraftDatabase
+- ATCGraphicDisplay
+Assumptions (if any):
